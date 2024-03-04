@@ -30,6 +30,7 @@ let toggleMode =() =>{
     return (
       <>
       <BrowserRouter>
+      
       <Navbar mode={mode} toggleMode= {toggleMode}/>
       
       <div className="container">
