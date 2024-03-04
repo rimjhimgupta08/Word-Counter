@@ -1,38 +1,52 @@
 import React,  {useState} from 'react';
 import './App.css';
+import Navbar from './Components/Navbar/Navbar';
+import About from './Components/About';
+import TextUtils from './Components/TextUtils';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
-  const haddleUpClick = () =>{
-    let newText = text.toUpperCase();
-    // text.toUpperCase();
-    setText(newText)
+
+ const [mode, setMode] = useState("light");
+
+  
+let toggleMode =() =>{
+  if(mode === "light"){
+    setMode( "dark");
+    document.body.style.backgroundColor = "#144172";
+  }else{
+    setMode ( "light")
+    document.body.style.backgroundColor = "white";
+
+
   }
-  const haddlechange = (event) =>{
-    
-    setText(event.target.value)
-  }
-  const haddlelowerClick = ()=>{
-    let lowerText = text.toLowerCase();
-    setText(lowerText)
-  }
+
+}
   
     // Declare a new state variable, which we'll call "count"
-    const [text, setText] = useState("");
+    
     return (
       <>
+      <BrowserRouter>
+      <Navbar mode={mode} toggleMode= {toggleMode}/>
       
-      <div className='container'>
-        <h2>Type Text Here....</h2>
-        
-        <div className="my-3">
-        <textarea  id="mybox" cols="50" rows="10" value={text} onChange={haddlechange}> </textarea>
-        </div>
-
-        <button className=' mx-3' onClick={haddleUpClick}>Convert To UpperCase</button>
-        <button className=' mx-3'onClick={haddlelowerClick} >Convert to LowerCase</button>
-        <p>Word count {text.split(" ").length-1} -  {text.length} Character</p>
-        <p>{0.008 * text.split(" ").length} Minutes Read</p>
+      <div className="container">
+      <Routes>
+          {/* <Route path="/" element = {<About/>}>
+          <About mode={mode}/>
+          </Route> */}
+          
+          <Route path="/"
+           element = { <TextUtils mode={mode}  />}>
+          </Route>
+          <Route path="/about" element ={<About mode={mode}/>}>
+          
+          </Route>
+          </Routes>
       </div>
+      </BrowserRouter>
       </>
     );
   }
