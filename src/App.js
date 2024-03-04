@@ -31,7 +31,7 @@ let toggleMode =() =>{
       <>
       <BrowserRouter>
       
-      <Navbar mode={mode} toggleMode= {toggleMode}/>
+      
       
       <div className="container">
       <Routes>
@@ -47,6 +47,7 @@ let toggleMode =() =>{
           </Route>
           </Routes>
       </div>
+      <Navbar mode={mode} toggleMode= {toggleMode}/>
       </BrowserRouter>
       </>
     );
